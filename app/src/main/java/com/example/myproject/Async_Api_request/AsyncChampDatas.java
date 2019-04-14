@@ -1,11 +1,9 @@
-package com.example.myproject;
+package com.example.myproject.Async_Api_request;
 
 import android.app.Activity;
 import android.os.AsyncTask;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -60,7 +58,20 @@ public class AsyncChampDatas extends AsyncTask<String, Void, JSONObject> {
         if(json == null){
             System.out.println("JSON NULL");
         }
-        this.Names.add("SALUT");
+
+        try {
+            JSONObject Data = json.getJSONObject("data");
+
+            for(Iterator<String> it = Data.keys();it.hasNext();){
+                {
+                    this.Names.add(it.next());
+                }
+            }
+            Log.i("Names",this.Names.toString());
+        } catch (JSONException e) {
+            System.err.println("Can't fill the array");
+            e.printStackTrace();
+        }
         return json;
     }
 
@@ -79,19 +90,7 @@ public class AsyncChampDatas extends AsyncTask<String, Void, JSONObject> {
 
     protected void onPostExecute(JSONObject s) {
         Log.i("JSON ORIGINAL",s.toString() );
-        try {
-            JSONObject Data = s.getJSONObject("data");
 
-            for(Iterator<String> it = Data.keys();it.hasNext();){
-                {
-                    this.Names.add(it.next());
-                }
-            }
-            Log.i("Names",this.Names.toString());
-        } catch (JSONException e) {
-            System.err.println("Can't fill the array");
-            e.printStackTrace();
-        }
     }
 
     public ArrayList getList() {

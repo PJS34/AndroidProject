@@ -1,38 +1,27 @@
-package com.example.myproject;
+package com.example.myproject.MainActivity;
 
-import android.app.AlertDialog;
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.ImageButton;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import com.bumptech.glide.Glide;
+import com.example.myproject.R;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
-
+    private Activity Myactivity;
     private List<String> characters;
+    
 
-    public MyAdapter() {
-        characters = new ArrayList<>();
-        characters.add("rignrfnb");
-        characters.add("bla");
-        characters.add("coucou");
-    }
-
-    public MyAdapter(ArrayList myList) {
+    public MyAdapter(ArrayList myList,Activity A) {
         characters = myList;
+        this.Myactivity = A;
         Log.i("MyList",characters.toString());
     }
 
@@ -58,30 +47,27 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        private final TextView name;
+        private final ImageButton name;
         private String currentPair;
 
         public MyViewHolder(final View itemView) {
             super(itemView);
-
             name = itemView.findViewById(R.id.name);
-
-            /*
-            itemView.setOnClickListener(new View.OnClickListener() {
+            name.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    new AlertDialog.Builder(itemView.getContext())
-                          .setTitle(currentPair)
-                          .setMessage(currentPair)
-                            .show();
+                    Log.i("Touched",currentPair);
                 }
             });
-            */
+
         }
 
         public void display(String pair) {
             this.currentPair = pair;
-            name.setText(pair);
+            Glide.with(Myactivity)
+                    .load("http://ddragon.leagueoflegends.com/cdn/9.7.1/img/champion/"+ pair + ".png")
+                    .into(name);
+            //name.setText(pair);
             //description.setText(pair.second);
         }
     }
