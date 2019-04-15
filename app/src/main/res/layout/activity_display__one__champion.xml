@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/One_Champ_mainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Detailled_Champion.Display_One_Champion">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/Champ_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="TextView"
+                        android:textSize="80dp"
+                        android:textColor="#FF0000"
+                        tools:layout_editor_absoluteX="169dp"
+                        tools:layout_editor_absoluteY="16dp" />
+
+
+                    <TextView
+                        android:id="@+id/title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:text="TextView"
+                        android:textSize="40dp"
+                        tools:layout_editor_absoluteX="231dp"
+                        tools:layout_editor_absoluteY="109dp" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/Lore"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="TextView"
+                android:textColor="@color/colorPrimaryDark" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Spells and Skills"
+                android:layout_gravity="center"
+                android:textColor="#00FF00"
+                android:textSize="24sp" />
+
+            <GridLayout
+                android:id="@+id/Spells"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:columnCount="2"
+                android:rowCount="5"
+                android:textColor="#FF0055">
+
+                <ImageButton
+                    android:id="@+id/Passive"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:textColor="@color/colorPrimaryDark" />
+
+                <TextView
+                    android:id="@+id/PassiveDesc"
+                    android:layout_gravity="center"
+                    android:text="QspellDescription"
+                    android:textColor="@color/colorPrimaryDark" />
+
+                <ImageButton
+                    android:id="@+id/QSpell"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:text="Qspell"
+                    android:textColor="@color/colorPrimaryDark" />
+
+                <TextView
+                    android:id="@+id/QSpellDesc"
+                    android:layout_gravity="center"
+                    android:text="QspellDescription"
+                    android:textColor="@color/colorPrimaryDark" />
+
+                <ImageButton
+                    android:id="@+id/WSpell"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:text="Wspell"
+                    android:textColor="@color/colorPrimaryDark" />
+
+                <TextView
+                    android:id="@+id/WSpellDesc"
+                    android:layout_gravity="center"
+                    android:text="WspellDescription"
+                    android:textColor="@color/colorPrimaryDark" />
+
+                <ImageButton
+                    android:id="@+id/ESpell"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_columnSpan="1"
+                    android:text="Espell"
+                    android:textColor="@color/colorPrimaryDark" />
+
+                <TextView
+                    android:id="@+id/ESpellDesc"
+                    android:layout_gravity="center"
+                    android:text="EspellDescription"
+                    android:textColor="@color/colorPrimaryDark" />
+
+                <ImageButton
+                    android:id="@+id/RSpell"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:text="Rspell"
+                    android:textColor="@color/colorPrimaryDark" />
+
+                <TextView
+                    android:id="@+id/RSpellDesc"
+                    android:layout_gravity="center"
+                    android:text="RspellDescription"
+                    android:textColor="@color/colorPrimaryDark" />
+
+            </GridLayout>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#0000FF"
+                android:text="Recommended items"
+                android:textSize="24sp" />
+
+            <GridLayout
+                android:id="@+id/Items"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:columnCount="3"
+                android:rowCount="1"
+                android:textColor="#FFFFFF">
+                <ImageView
+                    android:id="@+id/Item1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="577dp"
+                    tools:src="@tools:sample/avatars" />
+                <ImageView
+                    android:id="@+id/Item2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="577dp"
+                    tools:src="@tools:sample/avatars" />
+                <ImageView
+                    android:id="@+id/Item3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:layout_editor_absoluteX="0dp"
+                    tools:layout_editor_absoluteY="577dp"
+                    tools:src="@tools:sample/avatars" />
+
+            </GridLayout>
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
+
+</android.support.constraint.ConstraintLayout>

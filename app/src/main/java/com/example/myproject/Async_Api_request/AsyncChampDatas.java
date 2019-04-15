@@ -16,15 +16,12 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 public class AsyncChampDatas extends AsyncTask<String, Void, JSONObject> {
-    private Activity myaActivity;
-    ArrayList<String> Names;
 
     public AsyncChampDatas(){
-       // this.myaActivity=Activity;
-        Names = new ArrayList<>();
     }
     @Override
     protected JSONObject doInBackground(String... strings) {
@@ -32,7 +29,7 @@ public class AsyncChampDatas extends AsyncTask<String, Void, JSONObject> {
         HttpURLConnection urlConnection = null;
         String result = null;
         try {
-            url = new URL("http://ddragon.leagueoflegends.com/cdn/9.6.1/data/en_US/champion.json");
+            url = new URL(strings[0]);
             urlConnection = (HttpURLConnection) url.openConnection(); // Open
             InputStream in = new BufferedInputStream(urlConnection.getInputStream()); // Stream
 
@@ -54,24 +51,6 @@ public class AsyncChampDatas extends AsyncTask<String, Void, JSONObject> {
             Log.i("ERROR","Cannot convert to json");
             e.printStackTrace();
         }
-
-        if(json == null){
-            System.out.println("JSON NULL");
-        }
-
-        try {
-            JSONObject Data = json.getJSONObject("data");
-
-            for(Iterator<String> it = Data.keys();it.hasNext();){
-                {
-                    this.Names.add(it.next());
-                }
-            }
-            Log.i("Names",this.Names.toString());
-        } catch (JSONException e) {
-            System.err.println("Can't fill the array");
-            e.printStackTrace();
-        }
         return json;
     }
 
@@ -89,12 +68,26 @@ public class AsyncChampDatas extends AsyncTask<String, Void, JSONObject> {
     }
 
     protected void onPostExecute(JSONObject s) {
-        Log.i("JSON ORIGINAL",s.toString() );
-
     }
+    public static ArrayList<String> ExtractJSON(JSONObject json){
+        ArrayList myList = new ArrayList<String>();
 
-    public ArrayList getList() {
+            for(Iterator<String> it = json.keys(); it.hasNext();){
+                {
+                    myList.add(it.next());
+                }
+            }
+            Log.i("Names",myList.toString());
 
-        return this.Names;
+        return myList;
     }
+   /* public static HashMap<String,String> ExtractaMapfromJson(JSONObject json) throws JSONException {
+        HashMap<String,String> MyDatas = new HashMap<>();
+        for(Iterator<String> it = json.keys(); it.hasNext();){
+            {
+                String nextKey = it.next();
+                MyDatas.put(nextKey,json.get(nextKey));
+            }
+        }
+    }*/
 }
