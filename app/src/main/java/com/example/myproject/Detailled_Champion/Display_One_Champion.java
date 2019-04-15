@@ -86,10 +86,49 @@ public class Display_One_Champion extends Activity {
         }
         try {
             SetSpellsGrid(InfosChamps);
+           SetItemsGrid(InfosChamps);
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
+    }
+
+    private void SetItemsGrid(JSONObject infosChamps) throws JSONException {
+
+
+        JSONArray Recommended = infosChamps.getJSONArray("recommended");
+        ArrayList<ImageView> Images= new ArrayList<>();
+        Images.add((ImageView) findViewById(R.id.Item1));
+        Images.add((ImageView) findViewById(R.id.Item2));
+        Images.add((ImageView) findViewById(R.id.Item3));
+        ArrayList<String> idItems = new ArrayList<>();
+
+        for (int i = 0; i<Recommended.length(); i++) {
+            JSONObject actual = Recommended.getJSONObject(i);
+            String map = actual.getString("map");
+            if(map.equals("SR")&& actual.getString("mode").equals("CLASSIC")){
+                JSONArray Blocks = actual.getJSONArray("blocks");
+                for (int j = 0; j<Blocks.length(); j++) {
+                    JSONObject tpm = Blocks.getJSONObject(j);
+                    JSONArray RecommendedItems = tpm.getJSONArray("items");
+                    if(tpm.getString("type").equals("essential")){
+                        for(int k = 0;k<RecommendedItems.length();k++){
+                            JSONObject Item = RecommendedItems.getJSONObject(k);
+                            idItems.add(Item.getString("id"));
+                        }
+                    }
+                }
+
+            }
+
+        }
+        Log.i("ArrayList",idItems.toString());
+        for(int i=0;i<3;i++){
+            String url = "http://ddragon.leagueoflegends.com/cdn/6.24.1/img/item/" +idItems.get(i) +".png";
+            Glide.with(this)
+                    .load(url)
+                    .into(Images.get(i));
+        }
     }
 
     private void SetSpellsGrid(JSONObject infosChamps) throws JSONException {
@@ -99,7 +138,7 @@ public class Display_One_Champion extends Activity {
 
         for (int i = 0; i<Spells.length(); i++) {
             JSONObject elem = Spells.getJSONObject(i);
-            Log.i("Spells",elem.toString());
+           // Log.i("Spells",elem.toString());
 
             try {
                 setSpell(elem.getJSONObject("image").getString("full"),tab[i],elem.getString("description"),elem.getString("name"));

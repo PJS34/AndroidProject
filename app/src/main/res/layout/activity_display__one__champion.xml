@@ -11,7 +11,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -35,8 +37,8 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:text="TextView"
-                        android:textSize="80dp"
                         android:textColor="#FF0000"
+                        android:textSize="80dp"
                         tools:layout_editor_absoluteX="169dp"
                         tools:layout_editor_absoluteY="16dp" />
 
@@ -46,8 +48,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:textColor="@color/colorPrimaryDark"
                         android:text="TextView"
+                        android:textColor="@color/colorPrimaryDark"
                         android:textSize="40dp"
                         tools:layout_editor_absoluteX="231dp"
                         tools:layout_editor_absoluteY="109dp" />
@@ -68,8 +70,8 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Spells and Skills"
                 android:layout_gravity="center"
+                android:text="Spells and Skills"
                 android:textColor="#00FF00"
                 android:textSize="24sp" />
 
@@ -152,40 +154,36 @@
                 android:id="@+id/textView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="#0000FF"
                 android:text="Recommended items"
+                android:textColor="#0000FF"
                 android:textSize="24sp" />
 
-            <GridLayout
+            <LinearLayout
                 android:id="@+id/Items"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:columnCount="3"
-                android:rowCount="1"
+                android:layout_height="184dp"
+                android:layout_gravity="center"
                 android:textColor="#FFFFFF">
+
                 <ImageView
                     android:id="@+id/Item1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:layout_editor_absoluteX="0dp"
-                    tools:layout_editor_absoluteY="577dp"
-                    tools:src="@tools:sample/avatars" />
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center" />
+
                 <ImageView
                     android:id="@+id/Item2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:layout_editor_absoluteX="0dp"
-                    tools:layout_editor_absoluteY="577dp"
-                    tools:src="@tools:sample/avatars" />
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center" />
+
                 <ImageView
                     android:id="@+id/Item3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    tools:layout_editor_absoluteX="0dp"
-                    tools:layout_editor_absoluteY="577dp"
-                    tools:src="@tools:sample/avatars" />
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_gravity="center" />
 
-            </GridLayout>
+            </LinearLayout>
         </LinearLayout>
 
     </ScrollView>

@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Detailled_Champion.Display_One_Champion"></activity>
+        <activity android:name=".userActivity.userActivity"></activity>
+        <activity android:name=".Detailled_Champion.Display_One_Champion" />
         <activity android:name=".MainActivity.DisplayAllChars">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

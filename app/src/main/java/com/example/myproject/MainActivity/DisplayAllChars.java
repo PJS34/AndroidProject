@@ -1,11 +1,16 @@
 package com.example.myproject.MainActivity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
+import com.example.myproject.Detailled_Champion.Display_One_Champion;
 import com.example.myproject.R;
 
 import java.util.ArrayList;
@@ -13,6 +18,7 @@ import java.util.Iterator;
 import java.util.concurrent.ExecutionException;
 
 import com.example.myproject.Async_Api_request.AsyncChampDatas;
+import com.example.myproject.userActivity.userActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -27,7 +33,18 @@ public class DisplayAllChars extends Activity {
         setContentView(R.layout.activity_display_all_chars);
         AsyncChampDatas getChamps = new AsyncChampDatas();
          getChamps.execute("http://ddragon.leagueoflegends.com/cdn/9.6.1/data/en_US/champion.json");
+        Button go = findViewById(R.id.Go);
+        go.setOnClickListener(new View.OnClickListener() {
 
+            @Override
+            public void onClick(View v) {
+                EditText s = findViewById(R.id.Pseudo);
+                String name = s.getText().toString();
+                final Intent intent = new Intent(DisplayAllChars.this, userActivity.class);
+                intent.putExtra("name",name);
+                startActivity(intent);
+            }
+        });
 
         final RecyclerView recyclerView = findViewById(R.id.my_recycler_view);
         // use this setting to improve performance if you know that changes
