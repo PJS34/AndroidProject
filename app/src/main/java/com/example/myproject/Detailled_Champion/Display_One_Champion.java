@@ -62,7 +62,7 @@ public class Display_One_Champion extends Activity {
         JSONObject Data = null;
         JSONObject InfosChamps = null;
         try {
-            JSONObject ChampsJSON = req.get();
+            JSONObject ChampsJSON =(JSONObject) req.get();
              Data = ChampsJSON.getJSONObject("data");
 
             InfosChamps = Data.getJSONObject(this.Champion);

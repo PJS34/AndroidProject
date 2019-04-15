@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.myproject.Detailled_Champion.Display_One_Champion;
 import com.example.myproject.R;
@@ -31,8 +32,8 @@ public class DisplayAllChars extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_all_chars);
-        AsyncChampDatas getChamps = new AsyncChampDatas();
-         getChamps.execute("http://ddragon.leagueoflegends.com/cdn/9.6.1/data/en_US/champion.json");
+        final AsyncChampDatas getChamps = new AsyncChampDatas();
+        getChamps.execute("http://ddragon.leagueoflegends.com/cdn/9.6.1/data/en_US/champion.json");
         Button go = findViewById(R.id.Go);
         go.setOnClickListener(new View.OnClickListener() {
 
@@ -40,9 +41,26 @@ public class DisplayAllChars extends Activity {
             public void onClick(View v) {
                 EditText s = findViewById(R.id.Pseudo);
                 String name = s.getText().toString();
-                final Intent intent = new Intent(DisplayAllChars.this, userActivity.class);
-                intent.putExtra("name",name);
-                startActivity(intent);
+                String url = "https://euw1.api.riotgames.com/lol/summoner/v4/summoners/by-name/"+ name + "?api_key=" + userActivity.APIKey;
+                AsyncChampDatas req = new AsyncChampDatas();
+                req.execute(url);
+                JSONObject PersonData = null;
+                try {
+                    PersonData =(JSONObject) req.get();
+                    System.out.println(url);
+                    if(PersonData == null){
+                        Toast.makeText(DisplayAllChars.this,"Nom de joueur incorrect",Toast.LENGTH_SHORT).show();
+                    }else{
+                        final Intent intent = new Intent(DisplayAllChars.this, userActivity.class);
+                        intent.putExtra("name",name);
+                        startActivity(intent);
+                    }
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
             }
         });
 
@@ -58,7 +76,7 @@ public class DisplayAllChars extends Activity {
         JSONObject json = null;
         try {
             //Waiting for the async to end. Otherwise we will get an empty arraylist.
-           json = getChamps.get();
+           json = (JSONObject) getChamps.get();
            JSONObject Data = json.getJSONObject("data");
         } catch (InterruptedException e) {
             e.printStackTrace();

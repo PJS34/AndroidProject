@@ -4,11 +4,13 @@ import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -19,12 +21,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
-public class AsyncChampDatas extends AsyncTask<String, Void, JSONObject> {
+public class AsyncChampDatas extends AsyncTask<String, Void, Object> {
 
     public AsyncChampDatas(){
     }
     @Override
-    protected JSONObject doInBackground(String... strings) {
+    protected Object doInBackground(String... strings) {
         URL url = null;
         HttpURLConnection urlConnection = null;
         String result = null;
@@ -37,9 +39,11 @@ public class AsyncChampDatas extends AsyncTask<String, Void, JSONObject> {
 
         } catch (MalformedURLException e) {
             e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            return null;
         } catch (IOException e) {
             e.printStackTrace();
-        }  finally {
+        } finally {
             if (urlConnection != null)
                 urlConnection.disconnect();
         }
@@ -48,10 +52,16 @@ public class AsyncChampDatas extends AsyncTask<String, Void, JSONObject> {
             Log.i("RESULT",result);
             json = new JSONObject(result);
         } catch (JSONException e) {
+            try {
+                JSONArray myArray = new JSONArray(result);
+                return (Object) myArray;
+            } catch (JSONException e1) {
+                e1.printStackTrace();
+            }
             Log.i("ERROR","Cannot convert to json");
             e.printStackTrace();
         }
-        return json;
+        return (Object) json;
     }
 
     private String readStream(InputStream is) throws IOException {
