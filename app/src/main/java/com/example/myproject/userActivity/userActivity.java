@@ -100,7 +100,7 @@ public class userActivity extends FragmentActivity {
         for(int i=0;i<Rank.length();i++){
             JSONObject act = Rank.getJSONObject(i);
             if(act.getString("queueType").equals("RANKED_SOLO_5x5")){
-                String Rankstring ="";
+                String Rankstring ="Niveau actuel : ";
                 Rankstring += act.getString("tier");
                 Rankstring += act.getString("rank");
                TextView t = findViewById(R.id.Rank);
