@@ -19,6 +19,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Iterator;
 import java.util.concurrent.ExecutionException;
 
 public class userActivity extends FragmentActivity {
@@ -111,6 +112,27 @@ public class userActivity extends FragmentActivity {
             }
         }
         Log.i("RANK",Rank.toString());
+    }
+    public String getURL(String championId) throws JSONException, ExecutionException, InterruptedException {
+        String url ="";
+        String Champname="";
+        AsyncChampDatas req = new AsyncChampDatas();
+        req.execute("http://ddragon.leagueoflegends.com/cdn/9.6.1/data/en_US/champion.json");
+        JSONObject Data = null;
+        JSONObject InfosChamps = null;
+        JSONObject ChampsJSON = (JSONObject) req.get();
+        Data = ChampsJSON.getJSONObject("data");
+        Log.i("DATADATA", Data.toString());
+        for (Iterator iterator = Data.keys(); iterator.hasNext();) {
+            String Champ = (String) iterator.next();
+            JSONObject act = Data.getJSONObject(Champ);
+           // Log.i("ICI",act.toString());
+            if(act.getString("key").equals(championId)){
+                Log.i("WINNER",Champ);
+                Champname = Champ;
+            }
+        }
+            return "http://ddragon.leagueoflegends.com/cdn/9.7.1/img/champion/"+ Champname + ".png";
     }
 
 }

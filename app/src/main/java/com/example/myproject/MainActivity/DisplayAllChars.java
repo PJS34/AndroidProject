@@ -2,7 +2,11 @@ package com.example.myproject.MainActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,6 +15,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.example.myproject.Detailled_Champion.Display_One_Champion;
 import com.example.myproject.R;
 
@@ -34,6 +41,7 @@ public class DisplayAllChars extends Activity {
         setContentView(R.layout.activity_display_all_chars);
         final AsyncChampDatas getChamps = new AsyncChampDatas();
         getChamps.execute("http://ddragon.leagueoflegends.com/cdn/9.6.1/data/en_US/champion.json");
+
         Button go = findViewById(R.id.Go);
         go.setOnClickListener(new View.OnClickListener() {
 

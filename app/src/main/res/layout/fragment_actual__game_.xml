@@ -6,9 +6,50 @@
     tools:context=".userActivity.Actual_Game_Fragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="ET HOP VOICI LE DEUXIEMEFRGAMENT" />
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/inGame"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:textSize="50sp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="30sp"
+            android:text="YOUR TEAM : " />
+        <LinearLayout
+            android:id="@+id/MyTeam"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="30sp"
+            android:text="THE ENEMY TEAM : " />
+        <LinearLayout
+            android:id="@+id/EnemyTeam"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="horizontal">
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
 
 </FrameLayout>
